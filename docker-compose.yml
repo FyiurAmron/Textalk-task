@@ -10,6 +10,11 @@ services:
             MYSQL_DATABASE: app
             MYSQL_USER: app
             MYSQL_PASSWORD: app
+    memcached:
+        container_name: memcached
+        image: memcached:1.6.10-alpine
+        ports:
+            - "11211:11211"
     php-fpm:
         build: docker/php-fpm
         ports:
