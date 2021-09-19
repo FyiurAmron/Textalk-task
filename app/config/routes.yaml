@@ -2,7 +2,7 @@ index:
     path: /
     controller: App\Controller\IndexController::indexAction
 image:
-    path: /{name}
+    path: /get/{name}
     requirements:
         name: .+
     controller: App\Controller\ImageController::imageAction
