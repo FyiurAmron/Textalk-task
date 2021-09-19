@@ -2,6 +2,15 @@
     "doctrine/instantiator": {
         "version": "1.4.0"
     },
+    "guzzlehttp/guzzle": {
+        "version": "7.3.0"
+    },
+    "guzzlehttp/promises": {
+        "version": "1.4.1"
+    },
+    "guzzlehttp/psr7": {
+        "version": "2.0.0"
+    },
     "myclabs/deep-copy": {
         "version": "1.10.2"
     },
@@ -64,8 +73,23 @@
     "psr/event-dispatcher": {
         "version": "1.0.0"
     },
+    "psr/http-client": {
+        "version": "1.0.1"
+    },
+    "psr/http-factory": {
+        "version": "1.0.1"
+    },
+    "psr/http-message": {
+        "version": "1.0.1"
+    },
     "psr/log": {
         "version": "1.1.4"
+    },
+    "ralouphie/getallheaders": {
+        "version": "3.0.3"
+    },
+    "roave/security-advisories": {
+        "version": "dev-latest"
     },
     "sebastian/cli-parser": {
         "version": "1.0.1"
