@@ -5,8 +5,10 @@ namespace App\Service;
 
 use Symfony\Component\HttpFoundation\Request;
 
-class ImageTransformOptions
+class ImageOptions
 {
+    public const MAX_IMAGE_SIZE = 4000 * 4000; // arbitrary ATM
+
     /**
      * see https://wiki.php.net/rfc/nullable-casting why this fn is still needed
      *
@@ -18,7 +20,7 @@ class ImageTransformOptions
         return ( $i === null ) ? null : (int) $i;
     }
 
-    public static function fromRequest( Request $request ) : ImageTransformOptions
+    public static function fromRequest( Request $request ) : ImageOptions
     {
         $query = $request->query;
         return new self(
@@ -29,11 +31,21 @@ class ImageTransformOptions
     }
 
     public function __construct(
-        protected ?int $width,
-        protected ?int $height,
-        protected ?string $extension
+        public ?int $width,
+        public ?int $height,
+        public ?string $extension = null,
+        public ?string $mimeType = null
     )
     {
+        if ( $width === 0 || $height === 0 ) {
+            throw new \OutOfRangeException( "non-zero w/h required, got [$width,$height] instead" );
+        }
+
+        $pxTotal = $width * $height;
+        if ( $pxTotal > self::MAX_IMAGE_SIZE ) {
+            throw new \OutOfRangeException(
+                "resulting image size [$width,$height]=$pxTotal > MAX_IMAGE_SIZE (" . self::MAX_IMAGE_SIZE . ")" );
+        }
     }
 
     public function __toString() : string
